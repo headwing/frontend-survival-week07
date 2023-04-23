@@ -1,2 +1,3 @@
 # frontend-survival-week07-answer
-프론트엔드 생존코스 7주차 과제 풀이
+
+라우팅을 이용해서 페이지 분리하기 풀이 코드
