@@ -1,7 +1,28 @@
-export default function OrderPage() {
+import { useSearchParams } from 'react-router-dom';
+
+import { useNavigate } from 'react-router';
+
+import Order from '../components/order';
+
+export default function OrderCompletePage() {
+  const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+  const orderId = searchParams.get('orderId');
+
+  if (!orderId) {
+    navigate('/');
+    return null;
+  }
+
+  const handleClickBack = () => {
+    navigate('/');
+  };
+
   return (
-    <div>
-      <h2>주문 완료, 서둘러 배달가겠습니다!</h2>
-    </div>
+    <Order
+      orderId={orderId}
+      onClickBack={handleClickBack}
+    />
   );
 }

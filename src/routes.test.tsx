@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
@@ -13,18 +13,28 @@ describe('routes', () => {
   }
 
   context('when the current path is “/”', () => {
-    it('renders the home page', () => {
+    it('renders the intro page', () => {
       renderRouter('/');
 
-      screen.getByText(/어서오세요, 메가의 민족입니다/);
+      screen.getByText(/원하시는 주문을 터치해주세요/);
     });
   });
 
-  context('when the current path is “/restaurants”', () => {
-    it('renders the restaurant list page', () => {
-      renderRouter('/restaurants');
+  context('when the current path is “/order”', () => {
+    it('renders the order page', () => {
+      renderRouter('/order');
 
-      screen.getByText(/메가반점/);
+      screen.getByText(/메가테라 푸드코트 키오스크/);
+    });
+  });
+
+  context('when the current path is “/order/complete”', () => {
+    it('renders the order result page', async () => {
+      renderRouter('/order/complete?orderId="ID"');
+
+      await waitFor(() => {
+        screen.getByText(/주문이 완료되었습니다!/);
+      });
     });
   });
 });

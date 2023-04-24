@@ -1,11 +1,8 @@
-import React from 'react';
+import 'reflect-metadata';
+
 import ReactDOM from 'react-dom/client';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-import routes from './routes';
-
-const router = createBrowserRouter(routes);
+import App from './App';
 
 function main() {
   const container = document.getElementById('root');
@@ -14,11 +11,7 @@ function main() {
   }
 
   const root = ReactDOM.createRoot(container);
-  root.render((
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
-  ));
+  root.render(<App />);
 }
 
 main();
